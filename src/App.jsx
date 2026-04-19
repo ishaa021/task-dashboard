@@ -78,7 +78,6 @@ function App() {
     ) {
       return;
     }
-
     if (filters.priority !== 'all' || filters.search.trim()) {
       return;
     }

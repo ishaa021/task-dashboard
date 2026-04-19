@@ -2,6 +2,11 @@
 
 This project is a responsive task management dashboard built with React, Vite, Tailwind CSS, Redux Toolkit, Firebase Authentication, and Local Storage persistence. The implementation is based on the provided dashboard-style Figma reference and focuses on matching the intended layout while keeping the code modular and maintainable.
 
+## Live Demo
+
+https://your-deployed-link.vercel.app
+
+
 ## Approach
 
 The app is structured around a small set of reusable UI components and a centralized Redux store.
@@ -11,6 +16,17 @@ The app is structured around a small set of reusable UI components and a central
 - Board data is managed in `src/features/board/boardSlice.js` using Redux Toolkit reducers and selectors.
 - Authentication is managed in `src/features/auth/authSlice.js` using Firebase Authentication.
 - Board state is persisted in Local Storage through `src/utils/localStorage.js`.
+
+## Architecture Overview
+
+The application follows a unidirectional data flow:
+
+User Action → Component → Dispatch Action → Redux Slice → Store Update → UI Re-render → Local Storage Persistence
+
+- Components handle UI and user interaction
+- Redux (boardSlice) handles business logic and state updates
+- Selectors derive filtered and computed data
+- Local Storage persists per-user board data
 
 
 ## Functionality Implemented
@@ -25,17 +41,8 @@ The app is structured around a small set of reusable UI components and a central
 - Task details such as due date, subtasks, comments, assignees, and activity log
 - Reminder banner for due and overdue tasks
 - Per-user board persistence with Local Storage
+- Delete tasks with immediate UI update and state synchronization
 
-## State Management
-
-Redux Toolkit is used for application state.
-
-- `auth` slice stores the authenticated user, loading state, and auth errors
-- `board` slice stores filters, columns, and tasks
-- Selectors derive filtered tasks and reminder tasks
-- The Redux store subscribes to changes and saves the board state to Local Storage for the current authenticated user
-
-Only the board data is persisted locally, and it is scoped per authenticated Firebase user. Authentication is handled by Firebase session state.
 
 ## Assumptions
 
@@ -46,33 +53,6 @@ Only the board data is persisted locally, and it is scoped per authenticated Fir
 - Firebase Authentication is expected to be configured by the reviewer before login/signup is tested.
 - The dashboard is intended as a frontend assignment project, so task data is seeded locally and then persisted in the browser per signed-in user.
 
-## Project Structure
-
-```text
-src/
-  app/
-    store.js
-  components/
-    AddTaskModal.jsx
-    AuthScreen.jsx
-    BoardToolbar.jsx
-    Header.jsx
-    ReminderBanner.jsx
-    Sidebar.jsx
-    TaskCard.jsx
-    TaskColumn.jsx
-  data/
-    seedData.js
-  features/
-    auth/
-      authSlice.js
-    board/
-      boardSlice.js
-  lib/
-    firebase.js
-  utils/
-    localStorage.js
-```
 
 ## How To Run Locally
 
@@ -113,24 +93,5 @@ Open the local URL shown by Vite, typically:
 
 ```text
 http://localhost:5173
-```
 
-## Build For Production
-
-```bash
-npm run build
-```
-
-To preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Notes
-
-- Board state is stored under the browser Local Storage key `task-dashboard-state`.
-- Saved board data is namespaced per authenticated Firebase user so each account keeps its own dashboard tasks.
-- Legacy stale board storage is cleaned up automatically, and older single-board saved data is migrated to the current signed-in user.
-- The project uses `@hello-pangea/dnd` for drag-and-drop compatibility with the current React setup.
 
