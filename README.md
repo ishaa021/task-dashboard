@@ -4,7 +4,7 @@ This project is a responsive task management dashboard built with React, Vite, T
 
 ## Live Demo
 
-https://your-deployed-link.vercel.app
+https://task-dashboard-ebon-alpha.vercel.app/
 
 ## Watch the demo here:
 
