@@ -6,6 +6,10 @@ This project is a responsive task management dashboard built with React, Vite, T
 
 https://your-deployed-link.vercel.app
 
+## Watch the demo here:
+
+https://drive.google.com/file/d/18Tqf9cyes4av9OnCscT1dcGxycv1ktDJ/view?usp=sharing
+
 
 ## Approach
 
